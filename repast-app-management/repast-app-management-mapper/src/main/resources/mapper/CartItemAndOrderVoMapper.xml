@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aaa.lee.app.mapper.CartItemAndOrderVoMapper" >
+
+
+    <select id="selctCartItemAndOrder" resultType="com.aaa.lee.app.vo.CartItemAndOrderVO">
+      SELECT
+	oci.id pId,
+	oci.product_id productId,
+	oci.member_id memberId,
+	oci.shop_id shopId,
+	oci.price price,
+	oci.quantity,
+	oci.product_pic productPic,
+	oci.product_name productName,
+	oci.create_date createDate,
+	oci.modify_date modifyDate,
+	oci.delete_status deleteStatus,
+	um.nickname memberNickname,
+	um.member_level_id memberLevelId,
+	um.username memberUsername
+FROM
+	oms_cart_item oci,
+	ums_member um
+WHERE
+	oci.member_id = #{memberId}
+	AND oci.shop_id = #{shopId}
+	AND um.id = oci.member_id
+	AND oci.delete_status = 0
+	AND oci.shopping_way = 1
+    </select>
+</mapper>

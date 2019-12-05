@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aaa.lee.app.mapper.OmsOrderAndShopInfoVoMapper" >
+
+   <select id="getOrderAndShopInfo" parameterType="Long" resultType="com.aaa.lee.app.vo.OmsOrderAndShopInfoVo">
+SELECT DISTINCT
+	oo.order_sn,
+	oo.create_time,
+	oo.total_amount,
+	oo.pay_amount,
+	oo.order_type,
+	usi.`name`,
+	usi.id,
+	usi.images,
+	oo.order_status,
+	usi.phone
+FROM
+	oms_order oo
+	INNER JOIN `ums_shop_information` usi ON oo.shop_id = usi.id
+	WHERE
+	oo.member_id =#{memberId}
+	<choose>
+		<when test="orderStatus==0">
+			and order_status =0
+		</when>
+		<when test="orderStatus==1">
+			and order_status =1
+		</when>
+		<when test="orderStatus==2">
+			and order_status =2
+		</when>
+		<when test="orderStatus==3">
+			and order_status =3
+		</when>
+		<when test="orderStatus==4">
+			and order_status =4
+		</when>
+		<when test="orderStatus==5">
+			and order_status =5
+		</when>
+		<otherwise>
+			AND 1 = 1
+		</otherwise>
+	</choose>
+ORDER BY
+	oo.create_time DESC
+</select>
+
+</mapper>
