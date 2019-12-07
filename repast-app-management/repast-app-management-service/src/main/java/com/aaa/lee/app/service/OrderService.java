@@ -189,7 +189,6 @@ public class OrderService extends BaseService<OmsOrder> {
                         Integer productQuantity = omsor.getProductQuantity();
                         pmsSkuStock.setProductId(productId);
                         PmsSkuStock pmsSkuStock1 = pmsSkuStockMapper.selectOne(pmsSkuStock);
-                        Integer ao = pmsSkuStock1.getStock();
                         if (pmsSkuStock1.getStock() > productQuantity) {
                             omsOrderItem.setProductId(productId)
                                     .setProductName(productName)

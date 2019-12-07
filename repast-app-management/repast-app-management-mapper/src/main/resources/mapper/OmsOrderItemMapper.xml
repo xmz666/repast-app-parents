@@ -30,4 +30,26 @@
     <result column="gift_growth" property="giftGrowth" jdbcType="INTEGER" />
     <result column="product_attr" property="productAttr" jdbcType="VARCHAR" />
   </resultMap>
+  <insert id="setOrderItem" parameterType="com.aaa.lee.app.domain.OmsOrderItem">
+    insert into oms_order_item
+    (
+    order_id,
+    product_id,
+    order_sn,
+    product_name,
+    product_pic,
+    product_price,
+    product_quantity
+    )
+    values
+      (
+      #{orderId},
+      #{productId},
+      #{orderSn},
+      #{productName},
+      #{productPic},
+      #{productPrice},
+      #{productQuantity}
+      )
+  </insert>
 </mapper>

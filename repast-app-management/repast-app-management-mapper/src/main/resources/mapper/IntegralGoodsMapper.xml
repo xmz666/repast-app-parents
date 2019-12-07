@@ -66,7 +66,7 @@
       )
     </insert>
     <select id="getPmsProductVO" parameterType="long" resultType="com.aaa.lee.app.domain.PmsProductVO">
-    select id pmsId,shop_id shopId,username,pic,price,publish_status publishStatus,description
+    select id pmsId,shop_id shopId,'name',pic,price,publish_status publishStatus,description
     from pms_product where  id = #{productId} and publish_status = 1
     </select>
     <select id="getMemberNameById" parameterType="long" resultType="com.aaa.lee.app.domain.Member">

@@ -51,6 +51,28 @@
     <result column="receive_time" property="receiveTime" jdbcType="TIMESTAMP" />
     <result column="comment_time" property="commentTime" jdbcType="TIMESTAMP" />
     <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="order_status" property="orderStatus" jdbcType="INTEGER" />
   </resultMap>
-
+  <insert id="setOmsOrder" parameterType="com.aaa.lee.app.domain.OmsOrder" useGeneratedKeys="true" keyProperty="id">
+    insert  into oms_order (
+    member_id,
+    shop_id,
+    order_sn,
+    create_time,
+    member_username,
+    total_amount,
+    pay_amount,
+    order_status
+    )
+    values(
+     #{memberId},
+      #{shopId},
+      #{orderSn},
+      #{createTime},
+      #{memberUsername},
+      #{totalAmount},
+      #{payAmount},
+      #{orderStatus}
+    )
+  </insert>
 </mapper>

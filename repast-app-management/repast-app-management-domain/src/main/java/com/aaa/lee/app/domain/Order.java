@@ -290,5 +290,9 @@ public class Order implements Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date modifyTime;
 
-
+    /**
+     * 需要传入的值：0.外卖，1：订餐，2:拼团，3:预定，4:超市，5：积分订单
+     */
+    @Column(name = "order_status")
+    private int orderStatus;
 }

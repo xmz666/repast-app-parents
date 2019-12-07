@@ -128,11 +128,8 @@ public class IntegralGoodsService {
                             .setProductPic(pic)
                             .setProductName(productName)
                             .setOrderId(omsOrderId);
-                    System.out.println(orderItem+"-------------------------------------返回的积分商品相关表的数据");
-                    System.out.println(orderItem+"--------------------------------------放入的方法");
-
                     int i1 = goodsMapper.setIntegralOrderItem(orderItem);
-                    System.out.println(i1);
+
                 /*
                 生成积分变化历史记录表
                 需要存入：用户id，商铺id，创建时间，积分变化类型，商品积分价格
