@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aaa.lee.app.mapper.IntegralGoodsMapper" >
+    <insert id="setIntegralOrder" parameterType="com.aaa.lee.app.domain.OmsOrder" useGeneratedKeys="true" keyProperty="id">
+    insert  into oms_order (
+    member_id,
+    shop_id,
+    order_sn,
+    create_time,
+    member_username,
+    pay_amount,
+    status,
+    order_status
+    )
+    values(
+     #{memberId},
+      #{shopId},
+      #{orderSn},
+      #{createTime},
+      #{memberUsername},
+      #{payAmount},
+      #{status},
+      #{orderStatus}
+    )
+    </insert>
+    <insert id="setIntegralOrderItem" parameterType="com.aaa.lee.app.domain.OmsOrderItem">
+    insert into oms_order_item
+    (
+    product_id,
+    order_sn,
+    product_name,
+    product_pic,
+    product_price,
+    product_quantity,
+    order_id
+    )
+    values
+      (
+      #{productId},
+      #{orderSn},
+      #{productName},
+      #{productPic},
+      #{productPrice},
+      #{productQuantity},
+      #{orderId}
+      )
+    </insert>
+    <insert id="setIntegralChangeHistory" parameterType="com.aaa.lee.app.domain.UmsIntegrationChangeHistory">
+     insert into ums_integration_change_history
+    (
+    member_id,
+    shop_id,
+    create_time,
+    change_type,
+    change_count,
+    operate_man
+    )
+    values
+      (
+      #{memberId},
+      #{shopId},
+      #{createTime},
+      #{changeType},
+      #{changeCount},
+      #{operateMan}
+      )
+    </insert>
+    <select id="getPmsProductVO" parameterType="long" resultType="com.aaa.lee.app.domain.PmsProductVO">
+    select id pmsId,shop_id shopId,username,pic,price,publish_status publishStatus,description
+    from pms_product where  id = #{productId} and publish_status = 1
+    </select>
+    <select id="getMemberNameById" parameterType="long" resultType="com.aaa.lee.app.domain.Member">
+        select username from ums_member where id = #{memberId}
+    </select>
+</mapper>

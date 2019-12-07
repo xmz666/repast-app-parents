@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aaa.lee.app.mapper.SmsCouponMapper" >
+  <resultMap id="BaseResultMap" type="com.aaa.lee.app.domain.SmsCoupon" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="shop_id" property="shopId" jdbcType="BIGINT" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="platform" property="platform" jdbcType="INTEGER" />
+    <result column="count" property="count" jdbcType="INTEGER" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="per_limit" property="perLimit" jdbcType="INTEGER" />
+    <result column="min_point" property="minPoint" jdbcType="DECIMAL" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="use_type" property="useType" jdbcType="INTEGER" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+    <result column="publish_count" property="publishCount" jdbcType="INTEGER" />
+    <result column="use_count" property="useCount" jdbcType="INTEGER" />
+    <result column="receive_count" property="receiveCount" jdbcType="INTEGER" />
+    <result column="enable_time" property="enableTime" jdbcType="TIMESTAMP" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="member_level" property="memberLevel" jdbcType="INTEGER" />
+  </resultMap>
+</mapper>

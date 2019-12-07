@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aaa.lee.app.mapper.CartMapper" >
+  <resultMap id="BaseResultMap" type="com.aaa.lee.app.domain.Cart" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="product_id" property="productId" jdbcType="BIGINT" />
+    <result column="product_sku_id" property="productSkuId" jdbcType="BIGINT" />
+    <result column="member_id" property="memberId" jdbcType="BIGINT" />
+    <result column="shop_id" property="shopId" jdbcType="BIGINT" />
+    <result column="quantity" property="quantity" jdbcType="INTEGER" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="sp1" property="sp1" jdbcType="VARCHAR" />
+    <result column="sp2" property="sp2" jdbcType="VARCHAR" />
+    <result column="sp3" property="sp3" jdbcType="VARCHAR" />
+    <result column="product_pic" property="productPic" jdbcType="VARCHAR" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="product_sub_title" property="productSubTitle" jdbcType="VARCHAR" />
+    <result column="product_sku_code" property="productSkuCode" jdbcType="VARCHAR" />
+    <result column="member_nickname" property="memberNickname" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+    <result column="delete_status" property="deleteStatus" jdbcType="INTEGER" />
+    <result column="product_category_id" property="productCategoryId" jdbcType="BIGINT" />
+    <result column="product_brand" property="productBrand" jdbcType="VARCHAR" />
+    <result column="product_sn" property="productSn" jdbcType="VARCHAR" />
+    <result column="product_attr" property="productAttr" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="selectByMidPid" parameterType="com.aaa.lee.app.domain.Cart" resultType="map">
+        select * from oms_cart_item where product_id = #{productId} and member_id = #{memberId} and delete_status = 0 and shopping_way = #{shoppingWay}
+  </select>
+  <update id="updateCartByIdBuyNum" parameterType="com.aaa.lee.app.domain.Cart">
+        update oms_cart_item set quantity = #{quantity},modify_date = #{modifyDate} where id = #{id}
+  </update>
+  <delete id="deleteCartById" parameterType="Long">
+        delete from oms_cart_item where id = #{cartId}
+  </delete>
+  <select id="selectByMidSid" parameterType="com.aaa.lee.app.domain.Cart" resultMap="BaseResultMap">
+        select c.*,p.publish_status from oms_cart_item c inner join pms_product p where c.member_id = #{memberId} and c.shop_id= #{shopId} and p.publish_status = 1 and c.shopping_way = #{shoppingWay}
+  </select>
+  <update id="updateCartByShopId" parameterType="com.aaa.lee.app.domain.Cart">
+        update oms_cart_item set delete_status = #{deleteStatus} where shop_id = shopId and member_id = #{memberId} and delete_status = 0
+  </update>
+  <select id="selectProductSkuByPid" parameterType="Long" resultType="com.aaa.lee.app.vo.CartInfo">
+        select p.id productId,p.shop_id shopId,p.price,p.pic productPic,p.`name` productName,p.sub_title,p.product_category_id,p.brand_name,p.product_sn,s.id productSkuId,s.sp1,s.sp2,s.sp3,s.sku_code productSkuCode from pms_product p INNER JOIN pms_sku_stock s on s.product_id= p.id where p.id = #{pId}
+  </select>
+  <delete id="deleteCartByShopId" parameterType="com.aaa.lee.app.domain.Cart" >
+        delete from oms_cart_item where member_id = #{memberId} and shop_id = #{shopId} and delete_status = 0 and shopping_way = #{shoppingWay}
+  </delete>
+  <select id="selectDeleteStatus" parameterType="long" resultType="integer">
+        select delete_status from oms_cart_item where id = #{cartId}
+  </select>
+  <insert id="insertReturnKey" useGeneratedKeys="true" keyProperty="id" parameterType="com.aaa.lee.app.domain.Cart">
+        insert into oms_cart_item values (null,#{productId},#{productSkuId},#{memberId},#{shopId},#{quantity},#{price},#{sp1},#{sp2},#{sp3},#{productPic},#{productName},#{productSubTitle},#{productSkuCode},#{memberNickname},#{createDate},#{modifyDate},#{deleteStatus},#{productCategoryId},#{productBrand},#{productSn},#{productAttr},#{shoppingWay})
+  </insert>
+</mapper>
