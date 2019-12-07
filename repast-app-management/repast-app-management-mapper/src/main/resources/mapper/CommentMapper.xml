@@ -16,7 +16,7 @@
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="show_status" property="showStatus" jdbcType="INTEGER" />
     <result column="product_attribute" property="productAttribute" jdbcType="VARCHAR" />
-    <result column="collect_couont" property="collectCouont" jdbcType="INTEGER" />
+    <result column="collect_count" property="collectCount" jdbcType="INTEGER" />
     <result column="read_count" property="readCount" jdbcType="INTEGER" />
     <result column="pics" property="pics" jdbcType="VARCHAR" />
     <result column="member_icon" property="memberIcon" jdbcType="VARCHAR" />

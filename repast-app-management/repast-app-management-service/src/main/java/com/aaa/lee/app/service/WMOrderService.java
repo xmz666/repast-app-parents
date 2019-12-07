@@ -109,6 +109,7 @@ public class WMOrderService extends BaseService<Order> {
                                     Date formatDate = simpleDateFormat.parse(format);
                                     //修改订单状态为已发货，修改时间
                                     order.setModifyTime(formatDate)
+                                            .setDeliveryTime(formatDate)
                                             .setStatus(STATUS_ORDER_SENT)
                                             .setConfirmStatus(STATUS_ORDER_NOT_CONFIRM);
                                     Integer updateResult = WMOrderService.super.update(order);

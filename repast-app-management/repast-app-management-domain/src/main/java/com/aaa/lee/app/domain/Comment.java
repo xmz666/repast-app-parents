@@ -63,8 +63,8 @@ public class Comment implements Serializable {
     @Column(name = "product_attribute")
     private String productAttribute;
 
-    @Column(name = "collect_couont")
-    private Integer collectCouont;
+    @Column(name = "collect_count")
+    private Integer collectCount;
 
     @Column(name = "read_count")
     private Integer readCount;
