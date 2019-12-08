@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aaa.lee.app.mapper.ReturnApplyMapper" >
+  <resultMap id="BaseResultMap" type="com.aaa.lee.app.domain.ReturnApply" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="shop_id" property="shopId" jdbcType="BIGINT" />
+    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+    <result column="company_address_id" property="companyAddressId" jdbcType="BIGINT" />
+    <result column="product_id" property="productId" jdbcType="BIGINT" />
+    <result column="order_sn" property="orderSn" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="member_username" property="memberUsername" jdbcType="VARCHAR" />
+    <result column="return_amount" property="returnAmount" jdbcType="DECIMAL" />
+    <result column="return_name" property="returnName" jdbcType="VARCHAR" />
+    <result column="return_phone" property="returnPhone" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="handle_time" property="handleTime" jdbcType="TIMESTAMP" />
+    <result column="product_pic" property="productPic" jdbcType="VARCHAR" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="product_brand" property="productBrand" jdbcType="VARCHAR" />
+    <result column="product_attr" property="productAttr" jdbcType="VARCHAR" />
+    <result column="product_count" property="productCount" jdbcType="INTEGER" />
+    <result column="product_price" property="productPrice" jdbcType="DECIMAL" />
+    <result column="product_real_price" property="productRealPrice" jdbcType="DECIMAL" />
+    <result column="reason" property="reason" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="proof_pics" property="proofPics" jdbcType="VARCHAR" />
+    <result column="handle_note" property="handleNote" jdbcType="VARCHAR" />
+    <result column="handle_man" property="handleMan" jdbcType="VARCHAR" />
+    <result column="receive_man" property="receiveMan" jdbcType="VARCHAR" />
+    <result column="receive_time" property="receiveTime" jdbcType="TIMESTAMP" />
+    <result column="receive_note" property="receiveNote" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <insert id="batchInsertReturnApply" parameterType="java.util.List">
+    insert into oms_order_return_apply
+    (shop_id,order_id,product_id,order_sn,create_time,member_username,return_amount,
+     return_name,return_phone,status,product_pic,product_name,product_brand,product_attr,
+    product_count,product_price,product_real_price,reason,description,receive_man,receive_time)
+    values
+    <foreach collection="returnApplyList" item="apply" separator=",">
+      (#{apply.shopId, jdbcType=BIGINT},#{apply.orderId, jdbcType=BIGINT},#{apply.productId, jdbcType=BIGINT},#{apply.orderSn, jdbcType=VARCHAR},#{apply.createTime, jdbcType=TIMESTAMP},#{apply.memberUsername, jdbcType=VARCHAR},
+      #{apply.returnAmount, jdbcType=DECIMAL},#{apply.returnName, jdbcType=VARCHAR},#{apply.returnPhone, jdbcType=VARCHAR},#{apply.status, jdbcType=INTEGER},#{apply.productPic, jdbcType=VARCHAR},#{apply.productName, jdbcType=VARCHAR},
+      #{apply.productBrand, jdbcType=VARCHAR},#{apply.productAttr, jdbcType=VARCHAR},#{apply.productCount, jdbcType=INTEGER},#{apply.productPrice, jdbcType=DECIMAL},#{apply.productRealPrice, jdbcType=DECIMAL},
+      #{apply.reason, jdbcType=VARCHAR},#{apply.description, jdbcType=VARCHAR},#{apply.receiveMan, jdbcType=VARCHAR},#{apply.receiveTime, jdbcType=TIMESTAMP})
+    </foreach>
+  </insert>
+
+  <update id="updateStatusByOrderId" >
+    update oms_order_return_apply set status = #{status} where order_id = #{orderId}
+  </update>
+</mapper>

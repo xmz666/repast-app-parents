@@ -85,5 +85,21 @@ public class StaticProperties {
     public static final Integer CART_STATUS_ONE = 1;
 
 
+    /**
+     * 退货申请成功
+     */
+    public static final Integer APPLY_SUCCESS = 0;
+    /**
+     * 商家审核通过
+     */
+    public static final Integer APPLY_APPROVED = 1;
+    /**
+     * 退款入账
+     */
+    public static final Integer REFUND_SUCCEED = 2;
+    /**
+     * 商家拒绝退款
+     */
+    public static final Integer APPLY_REFUSED = 3;
 
 }

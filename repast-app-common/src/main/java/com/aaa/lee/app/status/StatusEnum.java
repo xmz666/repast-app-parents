@@ -16,7 +16,8 @@ public enum StatusEnum {
     DICTIONARY_DELETE("6", "字典数据被删除"),
     UPDATE_OPERATION("7", "修改操作"),
     DELETE_OPERATION("8", "删除操作"),
-    INSERT_OPERATION("9", "新增操作");
+    INSERT_OPERATION("9", "新增操作"),
+    TOKEN_LOST("10","用户令牌信息丢失");
 
     StatusEnum(String code, String msg) {
         this.code = code;

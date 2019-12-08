@@ -1,5 +1,6 @@
 package com.aaa.lee.app.service;
 
+import com.aaa.lee.app.base.ResultData;
 import com.aaa.lee.app.domain.*;
 
 import com.aaa.lee.app.fallback.RepastFallBackFactory;
@@ -288,4 +289,63 @@ public interface IRepastService {
      **/
     @PostMapping("/cancleOrder")
     Boolean cancleOrder(@RequestParam("orderSn") String orderSn,@RequestParam("token") String  token);
+
+
+    
+    /**
+     * @Author Administrator
+     * @Description
+     *        根据店铺ID获取原因列表
+     * @Date 2019/11/22
+     * @Param [shopId]
+     * @return java.util.List<com.aaa.app.domain.ReturnReason>
+     **/
+    @GetMapping("/getReturnReasonListByShopId")
+    ResultData getReturnReasonListByShopId(@RequestParam("token") String token, @RequestParam("shopId") Long shopId);
+
+    /**
+     * @Author Administrator
+     * @Description
+     *        获取可用退货原因列表
+     * @Date 2019/11/22
+     * @Param []
+     * @return java.util.List<com.aaa.app.domain.ReturnReason>
+     **/
+    @GetMapping("/getReturnReasonList")
+    ResultData getReturnReasonList(@RequestParam("token") String token);
+
+    /**
+     * @Author Administrator
+     * @Description
+     *        添加退货申请
+     * @Date 2019/11/23
+     * @Param [returnApply, token]
+     * @return com.aaa.app.base.ResultData
+     **/
+    @PostMapping("/addReturnApply")
+    ResultData addReturnApply(@RequestBody ReturnApply returnApply, @RequestParam("token") String token);
+
+    /**
+     * @Author Administrator
+     * @Description
+     *        通过orderId查询退货申请详情
+     * @Date 2019/11/23
+     * @Param [orderId, token]
+     * @return com.aaa.app.base.ResultData
+     **/
+    @GetMapping("/getReturnInfoByOrderId")
+    ResultData getReturnApplyInfoByOrderId(@RequestParam("orderId") Long orderId, @RequestParam("token") String token);
+
+    /**
+     * @Author Administrator
+     * @Description
+     *       根据订单id查询退货申请状态
+     *          0->待处理; 1->退货中; 2->已完成; 3->已拒绝
+     * @Date 2019/11/23
+     * @Param [orderId, token]
+     * @return com.aaa.app.base.ResultData
+     **/
+    @GetMapping("/getReturnStatusByOrderId")
+    ResultData getReturnApplyStatusByOrderId(@RequestParam("orderId") Long orderId, @RequestParam("token") String token);
+
 }

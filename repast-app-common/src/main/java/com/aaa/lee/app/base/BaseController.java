@@ -1,6 +1,7 @@
 package com.aaa.lee.app.base;
 
 import com.aaa.lee.app.status.LoginStatus;
+import com.aaa.lee.app.status.ReturnApplyStatus;
 import com.aaa.lee.app.status.StatusEnum;
 import org.springframework.stereotype.Controller;
 
@@ -232,5 +233,122 @@ public class BaseController {
         return resultData;
     }
 
+    /**
+     * 退货申请成功，返回系统消息
+     * @return
+     */
+    protected ResultData returnApplySuccess() {
+        ResultData resultData = new ResultData();
+        resultData.setCode(ReturnApplyStatus.APPLY_SUCCESS.getCode());
+        resultData.setMsg(ReturnApplyStatus.APPLY_SUCCESS.getMsg());
+        return resultData;
+    }
 
+    /**
+     * 退货申请成功，返回系统消息，自定义返回值
+     * @return
+     */
+    protected ResultData returnApplySuccess(Object data) {
+        ResultData resultData = new ResultData();
+        resultData.setCode(ReturnApplyStatus.APPLY_SUCCESS.getCode());
+        resultData.setMsg(ReturnApplyStatus.APPLY_SUCCESS.getMsg());
+        resultData.setData(data);
+        return resultData;
+    }
+
+    /**
+     * 退货申请失败，返回系统消息
+     * @return
+     */
+    protected ResultData returnApplyFailed() {
+        ResultData resultData = new ResultData();
+        resultData.setCode(ReturnApplyStatus.APPLY_FAILED.getCode());
+        resultData.setMsg(ReturnApplyStatus.APPLY_FAILED.getMsg());
+        return resultData;
+    }
+
+    /**
+     * 商家审核通过，返回系统消息，自定义返回值
+     * @param data
+     * @return
+     */
+    protected ResultData returnApplyApproved(Object data){
+        ResultData resultData = new ResultData();
+        resultData.setCode(ReturnApplyStatus.APPLY_APPROVED.getCode());
+        resultData.setMsg(ReturnApplyStatus.APPLY_APPROVED.getMsg());
+        resultData.setData(data);
+        return resultData;
+    }
+
+    /**
+     * 商家审核通过，返回自定义消息
+     * @param msg
+     * @return
+     */
+    protected ResultData returnApplyApproved(String msg){
+        ResultData resultData = new ResultData();
+        resultData.setCode(ReturnApplyStatus.APPLY_APPROVED.getCode());
+        resultData.setMsg(msg);
+        return resultData;
+    }
+
+    /**
+     * 退款成功，返回系统消息，自定义返回值
+     * @param data
+     * @return
+     */
+    protected ResultData returnApplyRefundSucceed(Object data){
+        ResultData resultData = new ResultData();
+        resultData.setCode(ReturnApplyStatus.APPLY_REFUND_SUCCEED.getCode());
+        resultData.setMsg(ReturnApplyStatus.APPLY_REFUND_SUCCEED.getMsg());
+        return resultData;
+    }
+
+    /**
+     * 退款成功，返回自定义消息
+     * @param msg
+     * @return
+     */
+    protected ResultData returnApplyRefundSucceed(String msg){
+        ResultData resultData = new ResultData();
+        resultData.setCode(ReturnApplyStatus.APPLY_REFUND_SUCCEED.getCode());
+        resultData.setMsg(msg);
+        return resultData;
+    }
+
+    /**
+     * 退款失败，商家拒绝退款，返回系统消息，自定义返回值
+     * @param data
+     * @return
+     */
+    protected ResultData returnApplyRefused(Object data){
+        ResultData resultData = new ResultData();
+        resultData.setCode(ReturnApplyStatus.APPLY_REFUSED.getCode());
+        resultData.setMsg(ReturnApplyStatus.APPLY_REFUSED.getMsg());
+        resultData.setData(data);
+        return resultData;
+    }
+
+    /**
+     * 退款失败，商家拒绝退款，返回自定义消息
+     * @param msg
+     * @return
+     */
+    protected ResultData returnApplyRefused(String msg){
+        ResultData resultData = new ResultData();
+        resultData.setCode(ReturnApplyStatus.APPLY_REFUSED.getCode());
+        resultData.setMsg(msg);
+        return resultData;
+    }
+
+    /**
+     * token丢失，返回系统消息
+     * @return
+     */
+    protected ResultData tokenLost(){
+        ResultData resultData = new ResultData();
+        resultData.setCode(StatusEnum.TOKEN_LOST.getCode());
+        resultData.setMsg(StatusEnum.TOKEN_LOST.getMsg());
+        return resultData;
+    }
 }

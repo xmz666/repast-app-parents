@@ -1,4 +1,5 @@
 package com.aaa.lee.app.fallback;
+import com.aaa.lee.app.base.ResultData;
 import com.aaa.lee.app.domain.*;
 import com.aaa.lee.app.service.IRepastService;
 import com.aaa.lee.app.vo.CartItemAndOrderVO;
@@ -176,6 +177,36 @@ public class RepastFallBackFactory implements FallbackFactory<IRepastService> {
 
             @Override
             public Boolean cancleOrder(String orderSn, String token) {
+                return null;
+            }
+
+            @Override
+            public ResultData getReturnReasonListByShopId(String token,Long shopId) {
+                System.out.println("测试通过shopId获取退货原因列表熔断信息");
+                return null;
+            }
+
+            @Override
+            public ResultData getReturnReasonList(String token) {
+                System.out.println("测试获取可用退货原因列表熔断信息");
+                return null;
+            }
+
+            @Override
+            public ResultData addReturnApply(ReturnApply returnApply, String token) {
+                System.out.println("测试添加退货申请熔断数据");
+                return null;
+            }
+
+            @Override
+            public ResultData getReturnApplyInfoByOrderId(Long orderId, String token) {
+                System.out.println("测试通过orderId查询退货申请详情熔断数据");
+                return null;
+            }
+
+            @Override
+            public ResultData getReturnApplyStatusByOrderId(Long orderId, String token) {
+                System.out.println("测试根据orderId查询退货申请状态熔断数据");
                 return null;
             }
         };

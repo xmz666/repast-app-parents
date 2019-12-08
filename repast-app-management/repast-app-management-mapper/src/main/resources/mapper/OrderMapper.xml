@@ -63,4 +63,9 @@
     on os.shop_id = mrs.shop_id
     where os.shop_id = #{shopId} and mrs.type = #{type}
   </select>
+
+  <select id="selectOrderInfoByOrderId" parameterType="long" resultMap="BaseResultMap">
+    select shop_id, order_sn, member_username, receiver_name, receiver_phone, receive_time
+    from oms_order where id=#{orderId} and delete_status=0 and `status` between 1 and 3
+  </select>
 </mapper>
